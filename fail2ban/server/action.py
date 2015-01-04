@@ -395,8 +395,8 @@ class CommandAction(ActionBase):
 					#logSys.log(5, 'recursion fail tag: %s value: %s' % (tag, value) )
 					return False
 				elif found_tag in cls._escapedTags:
-					# Escaped so won't match
-					continue
+					# Escaped so won't match; move to next match
+					m = t.search(value, m.start() + 1)
 				else:
 					if tags.has_key(found_tag):
 						value = value.replace('<%s>' % found_tag , tags[found_tag])
